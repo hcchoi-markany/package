@@ -43,7 +43,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ vars.REGISTRY }}/${{ github.repository }}/devhong-package
+          images: ${{ vars.REGISTRY }}/${{ github.repository }}/package
           flavor: latest=true
           tags: |
             type=ref,event=pr
