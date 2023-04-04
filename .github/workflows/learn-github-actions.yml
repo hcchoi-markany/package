@@ -39,6 +39,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.ACTION_TOKEN }}
 
+      - name: Added environment variable for version.
+        id: version
+        run: |
+          echo "GIT_SHORT_COMMIT_ID=$(git rev-parse —short HEAD)" >> $GITHUB_OUTPUT
+          echo "BUILD_TIME=$(date +'%Y-%m-%d_%H:%M')" >> $GITHUB_OUTPUT
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4
