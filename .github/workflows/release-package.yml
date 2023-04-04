@@ -71,10 +71,6 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: web-build # 위의 upload-artifact에서 설정한 name
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
