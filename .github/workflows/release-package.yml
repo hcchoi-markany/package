@@ -53,28 +53,28 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-    deploy:
-      # Add a dependency to the build job
-      needs: build-and-package
+  deploy:
+    # Add a dependency to the build job
+    needs: build-and-package
 
-      # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-      permissions:
-        pages: write # to deploy to Pages
-        id-token: write # to verify the deployment originates from an appropriate source
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
 
-      # Deploy to the github-pages environment
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
-      # Specify runner + deployment step
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/download-artifact@v3
-          with:
-            name: web-build # 위의 upload-artifact에서 설정한 name
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: web-build # 위의 upload-artifact에서 설정한 name
 
-        - uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.ACTION_TOKEN }}
-            publish_dir: ./dist
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACTION_TOKEN }}
+          publish_dir: ./dist
