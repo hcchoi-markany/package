@@ -27,6 +27,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.ACTION_TOKEN }}
 
+      - name: Added environment variable for service.
+        id: service_info
+        run: |
+          echo "SERVICE_NAME=server" >> $GITHUB_ENV
+          echo "SERVICE_PORT=9999" >> $GITHUB_ENV
+
       - name: Added environment variable for version.
         id: version
         run: |
