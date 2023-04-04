@@ -43,9 +43,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ vars.REGISTRY }}/${{ github.repository }}/package
-
-      - run: echo "${{ vars.REGISTRY }}/${{ github.repository }}/package"
+          images: ${{ vars.REGISTRY }}/${{ github.repository }}/dev-hong
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
