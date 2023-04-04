@@ -19,11 +19,9 @@ jobs:
       - run: npm install -g yarn
       - run: yarn
       - run: yarn build
+      - run: tar -cvf dist.tar dist
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: web-build # Job Artifact의 이름으로 설정 및 Artifact를 가져오는데 사용
-          path: /home/runner/work/package/package/dist # 폴더 지정 : 이 폴더 아래의 모든 파일들이 하나의 artifact로 저장된다.
+      - uses: upload-pages-artifact
 
       - name: Log in to the Container registry
         uses: docker/login-action@v2
@@ -74,7 +72,6 @@ jobs:
         with:
           name: web-build # 위의 upload-artifact에서 설정한 name
 
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.ACTION_TOKEN }}
-          publish_dir: /home/runner/work/package/package/dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
