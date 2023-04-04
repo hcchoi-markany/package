@@ -61,4 +61,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: testTag #${{ steps.meta.outputs.tags }}
+          tags: test-tag #${{ steps.meta.outputs.tags }}
