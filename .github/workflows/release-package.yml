@@ -22,7 +22,7 @@ jobs:
       - run: tar -cvf dist.tar dist
 
       - name: upload Pages Static file
-        uses: upload-pages-artifact
+        uses: actions/upload-pages-artifact@v1.0.8
         with:
           path: dist/
 
